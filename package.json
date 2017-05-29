@@ -1,0 +1,24 @@
+{
+  "name": "Bulkactions.js",
+  "description": "Easy bulk actions checkboxes management",
+  "version": "1.0.0",
+  "scripts": {
+    "build": "gulp build"
+  },
+  "author": "Mateusz Nastalski",
+  "license": "MIT",
+  "main": "dist/bulkactions",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/mnastalski/bulkactions.js"
+  },
+  "dependencies": {
+    "jquery": ">=1.7.0"
+  },
+  "devDependencies": {
+    "gulp": "^3.9.1",
+    "gulp-concat": "^2.6.1",
+    "gulp-rename": "^1.2.2",
+    "gulp-uglify": "^3.0.0"
+  }
+}

@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Bulkactions.js</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+    <style>
+        .main-container {
+            margin: 40px auto;
+            width: 600px;
+        }
+
+        .margin {
+            margin: 20px 0;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="main-container">
+        <h3 class="margin">Bulkactions.js</h3>
+
+        <div><input type="checkbox" name="box" value="1" autocomplete="off"> Box 1</div>
+        <div><input type="checkbox" name="box" value="2" autocomplete="off"> Box 2</div>
+        <div><input type="checkbox" name="box" value="3" autocomplete="off"> Box 3</div>
+        <div><input type="checkbox" name="box" value="4" autocomplete="off"> Box 4</div>
+        <div><input type="checkbox" name="box" value="5" autocomplete="off"> Box 5</div>
+        <div><input type="checkbox" name="box" value="6" autocomplete="off"> Box 6</div>
+        <div><input type="checkbox" name="box" value="7" autocomplete="off"> Box 7</div>
+        <div><input type="checkbox" name="box" value="8" autocomplete="off"> Box 8</div>
+
+        <div class="margin">
+            <button class="btn bulkactions-count" disabled="disabled">0</button>
+            <button class="btn btn-success bulkactions-checker select">Select all</button>
+            <button class="btn btn-danger bulkactions-checker unselect">Unselect all</button>
+        </div>
+    </div>
+
+
+    <!-- js -->
+    <script src="https://code.jquery.com/jquery-3.2.1.min.js" integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4=" crossorigin="anonymous"></script>
+    <script type="text/javascript" src="../dist/bulkactions.js"></script>
+
+    <script type="text/javascript">
+        BulkActions.bind();
+    </script>
+
+</body>
+</html>
