@@ -27,10 +27,6 @@ var BulkActions = {
 
         options = options || {};
 
-        if (!window.jQuery || $.fn.jquery < '1.7.0') {
-            console.error('Bulkactions.js requires jQuery 1.7.0 or higher');
-        }
-
         this.bindCheckbox(options.checkbox || 'input[type="checkbox"]');
         this.bindCount(options.count || '.bulkactions-count');
         this.bindChecker(options.checker || '.bulkactions-checker');
