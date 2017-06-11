@@ -95,13 +95,13 @@ var BulkActions = {
 
         var lastChecked;
 
-        this.$selector_checkbox.on('click', function (evt) {
+        this.$selector_checkbox.on('click', function (e) {
             if (!lastChecked) {
                 lastChecked = this;
                 return;
             }
 
-            if (evt.shiftKey) {
+            if (e.shiftKey) {
                 var start = BulkActions.$selector_checkbox.index(this),
                     end = BulkActions.$selector_checkbox.index(lastChecked);
 
