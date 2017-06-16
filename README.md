@@ -6,8 +6,8 @@ Library for easy bulk actions checkbox management
  - [Example usage of events](https://htmlpreview.github.io/?https://github.com/mnastalski/bulkactions.js/blob/master/examples/bulkactions_events.html)
 
 ## Features
- - Check/uncheck all
- - Check/Uncheck with shift key
+ - Check/Uncheck all elements
+ - Check/Uncheck elements with shift key
  - Return a list of checked objects
  - Return a list of values of checked elements
  - Return count of checked elements
@@ -43,7 +43,7 @@ BulkActions.bind({
 });
 ```
 
-You can find the complete example in the `examples/` folder.
+And you are set! You can find the complete example in the `examples/` folder.
 
 ## Options
 #### checkbox
