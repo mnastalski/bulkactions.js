@@ -10,6 +10,9 @@ var BulkActions = {
      */
     checked_list: [],
 
+    /**
+     * Selectors
+     */
     $selector_checkboxes: undefined,
     $selector_checker: undefined,
     $selector_count: undefined,
@@ -191,6 +194,9 @@ var BulkActions = {
         }
     },
 
+    /**
+     * Checks all checkboxes
+     */
     checkAll: function() {
         'use strict';
 
@@ -199,6 +205,9 @@ var BulkActions = {
         this.setChecked();
     },
 
+    /**
+     * Unchecks all checkboxes
+     */
     uncheckAll: function() {
         'use strict';
 
