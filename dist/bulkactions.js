@@ -5,23 +5,12 @@
  */
 
 var BulkActions = {
-    /**
-     * List of checked checkboxes
-     */
     checked_list: [],
 
     $selector_checkboxes: undefined,
     $selector_checker: undefined,
     $selector_count: undefined,
 
-    /**
-     * Binds bulk actions to the page
-     *
-     * @param options:
-     *      * checkbox  Checkboxes selector
-     *      * count     Count box selector
-     *      * checker   Select/Unselect all selector
-     */
     bind: function(options) {
         'use strict';
 
@@ -40,12 +29,6 @@ var BulkActions = {
         this.setChecked();
     },
 
-    /**
-     * Binds the checkboxes to use
-     * Binds shift selectable and onchange event to bound checkboxes
-     *
-     * @param selector
-     */
     bindCheckbox: function(selector) {
         'use strict';
 
@@ -58,12 +41,6 @@ var BulkActions = {
         });
     },
 
-    /**
-     * Binds the count box to show the selected amount in
-     * Disables clicking of it
-     *
-     * @param selector
-     */
     bindCount: function(selector) {
         'use strict';
 
@@ -74,11 +51,6 @@ var BulkActions = {
         });
     },
 
-    /**
-     * Binds the 'select all' selector
-     *
-     * @param selector
-     */
     bindChecker: function(selector) {
         'use strict';
 
@@ -91,11 +63,6 @@ var BulkActions = {
         });
     },
 
-    /**
-     * Bind shiftSelectable() to our checkboxes
-     * Allows group selecting of checkboxes using shift key
-     * https://gist.github.com/AndrewRayCode/3784055
-     */
     bindShiftSelectable: function() {
         'use strict';
 
@@ -120,9 +87,6 @@ var BulkActions = {
         });
     },
 
-    /**
-     * Calculates the amount of checked checkboxes and puts them into checked_list array (as object)
-     */
     setChecked: function() {
         'use strict';
 
@@ -135,9 +99,6 @@ var BulkActions = {
         this.setHtml();
     },
 
-    /**
-     * Sets the display of html elements
-     */
     setHtml: function() {
         'use strict';
 
@@ -145,9 +106,6 @@ var BulkActions = {
         this.setCheckerHtml();
     },
 
-    /**
-     * Sets the display of checked checkboxes amount if it is bound
-     */
     setCountHtml: function() {
         'use strict';
 
@@ -158,9 +116,6 @@ var BulkActions = {
         this.$selector_count.html(this.getCheckedCount());
     },
 
-    /**
-     * Sets the display of check-all buttons if they are bound
-     */
     setCheckerHtml: function() {
         'use strict';
 
@@ -177,10 +132,6 @@ var BulkActions = {
         }
     },
 
-    /**
-     * Checks/Unchecks all checkboxes based on already checked count
-     * If > 0 uncheck all otherwise check all
-     */
     clickAll: function() {
         'use strict';
 
@@ -207,35 +158,18 @@ var BulkActions = {
         this.setChecked();
     },
 
-    /**
-     * Gets a list of checked checkboxes objects
-     *
-     * @returns {Array}
-     */
     getChecked: function() {
         'use strict';
 
         return this.checked_list;
     },
 
-    /**
-     * Gets the number of checked checkboxes
-     *
-     * @returns {number}
-     */
     getCheckedCount: function() {
         'use strict';
 
         return this.getChecked().length;
     },
 
-    /**
-     * Gets a list of checked checkboxes values
-     * If separator is defined the list is returned as string with specified separator
-     *
-     * @param {string} separator
-     * @returns {string|Array}
-     */
     getCheckedValues: function(separator) {
         'use strict';
 
