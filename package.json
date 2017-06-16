@@ -1,7 +1,7 @@
 {
   "name": "Bulkactions.js",
-  "description": "Easy bulk actions checkboxes management",
-  "version": "1.0.0",
+  "description": "Easy bulk actions checkbox management",
+  "version": "1.0.1",
   "scripts": {
     "build": "gulp build"
   },
@@ -19,6 +19,7 @@
     "gulp": "^3.9.1",
     "gulp-concat": "^2.6.1",
     "gulp-rename": "^1.2.2",
+    "gulp-strip-debug": "^1.1.0",
     "gulp-uglify": "^3.0.0"
   }
 }

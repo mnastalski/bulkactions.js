@@ -1,5 +1,5 @@
 /*!
- * Bulkactions.js v1.0.0 (https://github.com/mnastalski/bulkaction.js)
+ * Bulkactions.js v1.0.1 (https://github.com/mnastalski/bulkaction.js)
  * Copyright 2017 Mateusz Nastalski
  * Licensed under MIT
  */
@@ -10,7 +10,7 @@ var BulkActions = {
      */
     checked_list: [],
 
-    $selector_checkbox: undefined,
+    $selector_checkboxes: undefined,
     $selector_checker: undefined,
     $selector_count: undefined,
 
@@ -27,9 +27,15 @@ var BulkActions = {
 
         options = options || {};
 
-        this.bindCheckbox(options.checkbox || 'input[type="checkbox"]');
-        this.bindCount(options.count || '.bulkactions-count');
-        this.bindChecker(options.checker || '.bulkactions-checker');
+        this.bindCheckbox(options.checkboxes || 'input[type="checkbox"]');
+
+        if (typeof options.count !== 'undefined') {
+            this.bindCount(options.count);
+        }
+
+        if (typeof options.checker !== 'undefined') {
+            this.bindChecker(options.checker);
+        }
 
         this.setChecked();
     },
@@ -43,11 +49,11 @@ var BulkActions = {
     bindCheckbox: function(selector) {
         'use strict';
 
-        this.$selector_checkbox = $(selector);
+        this.$selector_checkboxes = $(selector);
 
         this.bindShiftSelectable();
 
-        this.$selector_checkbox.on('change', function () {
+        this.$selector_checkboxes.on('change', function () {
             BulkActions.setChecked();
         });
     },
@@ -95,17 +101,17 @@ var BulkActions = {
 
         var lastChecked;
 
-        this.$selector_checkbox.on('click', function (e) {
+        this.$selector_checkboxes.on('click', function (e) {
             if (!lastChecked) {
                 lastChecked = this;
                 return;
             }
 
             if (e.shiftKey) {
-                var start = BulkActions.$selector_checkbox.index(this),
-                    end = BulkActions.$selector_checkbox.index(lastChecked);
+                var start = BulkActions.$selector_checkboxes.index(this),
+                    end = BulkActions.$selector_checkboxes.index(lastChecked);
 
-                BulkActions.$selector_checkbox.slice(Math.min(start, end), Math.max(start, end) + 1)
+                BulkActions.$selector_checkboxes.slice(Math.min(start, end), Math.max(start, end) + 1)
                     .prop('checked', lastChecked.checked)
                     .trigger('change');
             }
@@ -122,20 +128,45 @@ var BulkActions = {
 
         this.checked_list = [];
 
-        this.$selector_checkbox.filter(':checked').each(function () {
+        this.$selector_checkboxes.filter(':checked').each(function () {
             BulkActions.checked_list.push($(this));
         });
 
-        this.setCheckedHtml();
+        this.setHtml();
     },
 
     /**
-     * Sets the display of checked checkboxes amount
+     * Sets the display of html elements
      */
-    setCheckedHtml: function() {
+    setHtml: function() {
         'use strict';
 
+        this.setCountHtml();
+        this.setCheckerHtml();
+    },
+
+    /**
+     * Sets the display of checked checkboxes amount if it is bound
+     */
+    setCountHtml: function() {
+        'use strict';
+
+        if (typeof this.$selector_count === 'undefined') {
+            return;
+        }
+
         this.$selector_count.html(this.getCheckedCount());
+    },
+
+    /**
+     * Sets the display of check-all buttons if they are bound
+     */
+    setCheckerHtml: function() {
+        'use strict';
+
+        if (typeof this.$selector_checker === 'undefined') {
+            return;
+        }
 
         if (this.getCheckedCount() > 0) {
             this.$selector_checker.filter('.select').hide();
@@ -154,23 +185,26 @@ var BulkActions = {
         'use strict';
 
         if (this.getCheckedCount() > 0) {
-            this.$selector_checkbox.prop('checked', false);
+            this.uncheckAll();
         } else {
-            this.$selector_checkbox.prop('checked', true);
+            this.checkAll();
         }
+    },
+
+    checkAll: function() {
+        'use strict';
+
+        this.$selector_checkboxes.prop('checked', true);
 
         this.setChecked();
     },
 
-    /**
-     * Gets a number of checked checkboxes
-     *
-     * @returns {number}
-     */
-    getCheckedCount: function() {
+    uncheckAll: function() {
         'use strict';
 
-        return this.checked_list.length;
+        this.$selector_checkboxes.prop('checked', false);
+
+        this.setChecked();
     },
 
     /**
@@ -182,6 +216,17 @@ var BulkActions = {
         'use strict';
 
         return this.checked_list;
+    },
+
+    /**
+     * Gets the number of checked checkboxes
+     *
+     * @returns {number}
+     */
+    getCheckedCount: function() {
+        'use strict';
+
+        return this.getChecked().length;
     },
 
     /**

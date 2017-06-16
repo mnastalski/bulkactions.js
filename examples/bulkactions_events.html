@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>Bulkactions.js</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+    <style type="text/css">
+        .main-container {
+            margin: 60px auto;
+            width: 460px;
+        }
+
+        .margin {
+            margin: 30px 0;
+        }
+
+        .margin-small {
+            margin: 10px 0;
+        }
+
+        .hint {
+            color: #999;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="main-container">
+        <h3 class="margin">Bulkactions.js events</h3>
+
+        <div><input type="checkbox" name="bulk_checkbox" value="1" autocomplete="off"> Box 1</div>
+        <div><input type="checkbox" name="bulk_checkbox" value="2" autocomplete="off"> Box 2</div>
+        <div><input type="checkbox" name="bulk_checkbox" value="3" autocomplete="off"> Box 3</div>
+        <div><input type="checkbox" name="bulk_checkbox" value="4" autocomplete="off"> Box 4</div>
+        <div><input type="checkbox" name="bulk_checkbox" value="5" autocomplete="off"> Box 5</div>
+        <div><input type="checkbox" name="bulk_checkbox" value="6" autocomplete="off"> Box 6</div>
+        <div><input type="checkbox" name="bulk_checkbox" value="7" autocomplete="off"> Box 7</div>
+        <div><input type="checkbox" name="bulk_checkbox" value="8" autocomplete="off"> Box 8</div>
+
+        <div class="margin">
+            <div class="margin-small">
+                <button class="btn btn-success bulk-check-all">Select all</button>
+                <button class="btn btn-danger bulk-uncheck-all">Unselect all</button>
+                <button class="btn btn-info bulk-do-all">Action all</button>
+            </div>
+
+            <div class="margin-small">
+                <button class="btn btn-primary bulk-get-objects">Get objects</button>
+                <button class="btn btn-primary bulk-get-values">Get values</button>
+                <button class="btn btn-primary bulk-get-values-separator">Get comma separated values</button>
+            </div>
+        </div>
+
+        <div class="margin">
+            <strong>Output</strong><br>
+            <code></code>
+        </div>
+
+        <small class="hint"><em>Hint: for more detailed output check the console.</em></small>
+    </div>
+
+
+    <!-- js -->
+    <script src="https://code.jquery.com/jquery-3.2.1.min.js" integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4=" crossorigin="anonymous"></script>
+    <script type="text/javascript" src="../dist/bulkactions.min.js"></script>
+
+    <script type="text/javascript">
+        BulkActions.bind();
+
+        $('.bulk-check-all').click(function() {
+            BulkActions.checkAll();
+        });
+
+        $('.bulk-uncheck-all').click(function() {
+            BulkActions.uncheckAll();
+        });
+
+        $('.bulk-do-all').click(function() {
+            BulkActions.clickAll();
+        });
+
+        $('.bulk-get-objects').click(function() {
+            setOutput(BulkActions.getChecked().toString());
+        });
+
+        $('.bulk-get-values').click(function() {
+            setOutput(BulkActions.getCheckedValues());
+        });
+
+        $('.bulk-get-values-separator').click(function() {
+            setOutput(BulkActions.getCheckedValues(', '));
+        });
+
+        function setOutput(value) {
+            $('code').text(JSON.stringify(value));
+            console.log(value);
+        }
+    </script>
+
+</body>
+</html>
