@@ -11,6 +11,8 @@ var BulkActions = {
     $selector_checker: undefined,
     $selector_count: undefined,
 
+    check_invisible: false,
+
     bind: function(options) {
         'use strict';
 
@@ -25,6 +27,8 @@ var BulkActions = {
         if (typeof options.checker !== 'undefined') {
             this.bindChecker(options.checker);
         }
+
+        this.check_invisible = options.check_invisible === true;
 
         this.setChecked();
     },
@@ -68,17 +72,17 @@ var BulkActions = {
 
         var lastChecked;
 
-        this.$selector_checkboxes.on('click', function (e) {
+        this.getCheckboxes().on('click', function (e) {
             if (!lastChecked) {
                 lastChecked = this;
                 return;
             }
 
             if (e.shiftKey) {
-                var start = BulkActions.$selector_checkboxes.index(this),
-                    end = BulkActions.$selector_checkboxes.index(lastChecked);
+                var start = BulkActions.getCheckboxes().index(this),
+                    end = BulkActions.getCheckboxes().index(lastChecked);
 
-                BulkActions.$selector_checkboxes.slice(Math.min(start, end), Math.max(start, end) + 1)
+                BulkActions.getCheckboxes().slice(Math.min(start, end), Math.max(start, end) + 1)
                     .prop('checked', lastChecked.checked)
                     .trigger('change');
             }
@@ -145,7 +149,7 @@ var BulkActions = {
     checkAll: function() {
         'use strict';
 
-        this.$selector_checkboxes.prop('checked', true);
+        this.getCheckboxes().prop('checked', true);
 
         this.setChecked();
     },
@@ -153,9 +157,19 @@ var BulkActions = {
     uncheckAll: function() {
         'use strict';
 
-        this.$selector_checkboxes.prop('checked', false);
+        this.getCheckboxes().prop('checked', false);
 
         this.setChecked();
+    },
+
+    getCheckboxes: function() {
+        'use strict';
+
+        if (this.check_invisible === true) {
+            return this.$selector_checkboxes;
+        } else {
+            return this.$selector_checkboxes.filter(':visible');
+        }
     },
 
     getChecked: function() {

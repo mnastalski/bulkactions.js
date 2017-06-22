@@ -59,6 +59,10 @@ An element that displays the amount of currently checked checkboxes.
 Elements responsible for checking and unchecking all checkboxes. The checker must have the `.select` class and unchecker must have the `.unselect` class.  
 *Default:* `undefined`
 
+#### check_invisible
+Should invisible elements be checked with select all button and shift key.  
+*Default:* `false`
+
 
 ## Events
 | Name           | Description                                                  |
